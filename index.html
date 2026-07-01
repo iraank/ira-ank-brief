@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ТЗ стратегу — Іра Анк</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..700&family=Manrope:wght@300..800&display=swap');
+  :root{
+    --bg:#0A140F;
+    --bg2:#0C1A13;
+    --emerald-deep:#0F3D2E;
+    --emerald:#1B5E43;
+    --emerald-bright:#2E8B6B;
+    --card:#0E2018;
+    --line:rgba(212,175,106,.16);
+    --line-soft:rgba(212,175,106,.09);
+    --text:#EFE7D6;
+    --muted:#9DB0A4;
+    --gold:#D4AF6A;
+    --gold-soft:#E9CC86;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Manrope',system-ui,sans-serif;
+    background:
+      radial-gradient(900px 500px at 12% -8%, rgba(27,94,67,.42) 0%, transparent 60%),
+      radial-gradient(900px 500px at 95% 8%, rgba(15,61,46,.45) 0%, transparent 55%),
+      var(--bg);
+    background-attachment:fixed;
+    color:var(--text);
+    line-height:1.6;
+    padding:48px 20px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+  .eyebrow{color:var(--gold);font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin-bottom:14px}
+  h1{font-family:'Playfair Display',serif;font-weight:800;font-size:42px;line-height:1.12;letter-spacing:-.01em;margin-bottom:10px}
+  h1 .g{color:var(--gold-soft);font-style:italic;font-weight:600}
+  .sub{color:var(--muted);font-size:16px;margin-bottom:8px}
+  .links{color:var(--muted);font-size:14px;margin-top:14px}
+  .links a{color:var(--gold-soft);text-decoration:none;border-bottom:1px solid #5a4326}
+  .divider{height:1px;background:var(--line);margin:36px 0}
+  section{margin-bottom:30px}
+  h2{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  h2 .num{display:inline-flex;width:26px;height:26px;border:1px solid var(--gold);border-radius:50%;align-items:center;justify-content:center;font-size:12px;color:var(--gold)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  p{margin-bottom:10px}
+  p:last-child{margin-bottom:0}
+  strong{color:#fbf4e6;font-weight:700}
+  .gold{color:var(--gold-soft);font-weight:600}
+  ul{list-style:none;margin:6px 0}
+  li{position:relative;padding-left:22px;margin-bottom:9px}
+  li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+  ol{margin:6px 0 0 0;padding-left:0;counter-reset:q}
+  ol li{padding-left:34px}
+  ol ul{margin:10px 0 0 0;counter-reset:none}
+  ol ul li{padding-left:22px}
+  ol ul li::before{content:"";counter-increment:none;width:7px;height:7px;border-radius:50%;background:var(--gold);border:none;top:11px;left:2px}
+  ol li::before{content:counter(q);counter-increment:q;width:22px;height:22px;border-radius:6px;background:var(--emerald-deep);border:1px solid var(--line);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;top:3px;left:0}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+  .stat{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .stat .big{font-size:26px;font-weight:900;color:var(--gold)}
+  .stat .lbl{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.4}
+  .flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px;font-size:13px}
+  .pill{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-weight:600}
+  .arr{color:var(--gold);font-weight:800}
+  .pain{border-left:3px solid var(--gold);background:linear-gradient(90deg,rgba(15,61,46,.55),transparent);padding:14px 18px;border-radius:0 12px 12px 0;margin-top:14px;color:var(--gold-soft)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .mini-h{font-family:'Playfair Display',serif;font-weight:700;color:var(--text);margin-bottom:6px;font-size:18px}
+  .tag{display:inline-block;font-size:11px;font-weight:700;color:var(--gold);background:var(--emerald-deep);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-bottom:8px;letter-spacing:.05em}
+  .port{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .pcard{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .pcard p{font-size:14px;color:var(--muted);margin-bottom:8px}
+  .pcard a{display:inline-block;color:var(--gold-soft);text-decoration:none;font-size:13px;font-weight:600;border-bottom:1px solid #5a4326}
+  .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:34px}
+  @media(max-width:620px){h1{font-size:30px}.grid,.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">коуч мислення · Іра Анк</div>
+  <h1>Підготовка до <span class="g">стратегічної сесії</span><br>з Владом Ясько</h1>
+  <div class="links">
+    Instagram: <a href="https://www.instagram.com/iraank_coach/" target="_blank" rel="noopener">@iraank_coach</a> &nbsp;·&nbsp;
+    Telegram: <a href="https://t.me/IraAnkPro" target="_blank" rel="noopener">@IraAnkPro</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <section>
+    <h2><span class="num">1</span>Чим займаюся — ніша і продукт</h2>
+    <div class="card">
+      <p><strong>Коуч мислення.</strong> Працюю зі здоровими людьми — не психолог, не психотерапевт, не психіатр. За освітою лікарка, <span class="gold">тільки науковий підхід</span>. Допомагаю доходити до цілей, до яких важко дійти самому, через зняття внутрішніх перешкод.</p>
+      <p><span class="gold">Бекграунд:</span> медична практика → HR → HR-директор → налагодження бізнес-процесів і оргструктури (працювала в команді Олександра Висоцького).</p>
+      <p><span class="gold">Механіка продукту:</span> знайомство — <strong>30 хвилин, безкоштовно</strong>. За результатом пропоную <strong>2 платні коуч-сесії</strong> для вирішення точкового запиту → закриття на контракт. Мінімальний контракт <strong>16 тижнів</strong>, повний — <strong>1 рік</strong> (3 цикли по 16 тижнів за методологією Олександра Ісаєва).</p>
+      <p>Працюю сама one-to-one, AI-агенти.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>Де я зараз по маркетингу</h2>
+    <div class="card">
+      <p><strong>Точка 0.</strong> Instagram у ручному режимі (пости/рілси/сторіс), лендинг із заявкою + квіз, CTA «давайте знайомитись». Залучення лише через нетворкінг і рекомендації — цикл рік+ і 10+ дотиків.</p>
+      <p>Є <strong>4 кейси</strong> (4 контракти), але жоден не хоче бути публічним кейсом. Остання клієнтка грілася рік — і зайшла з касовим розривом, оплачувати зараз не може.</p>
+
+
+
+<div class="pain"><strong>Справжнє вузьке місце:</strong> технологія Unlocking — потужна, але трансформаційна. Це річна програма. За 2 коуч-сесії людина виносить <strong>точковий запит</strong>, який усвідомлює. Але трансформація вимагає докопатись до <strong>неусвідомлених частин</strong> — а на це потрібно до 16 тижнів. Донести це за дві сесії — майже неможливо.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>Дилема, яку хочу розрулити</h2>
+    <div class="card">
+      <div class="two">
+        <div>
+          <div class="tag">МЕТОДОЛОГІЯ</div>
+          <div class="mini-h">Анлокінг</div>
+          <p>Працює зі здоровими, які <strong>вже мають досягнення</strong> й хочуть більше → вони платоспроможні.</p>
+        </div>
+        <div>
+          <div class="tag">БІЛЬ</div>
+          <div class="mini-h">Один біль</div>
+          <p>Одна аудиторія / один біль / одне рішення — <strong>перша зустріч</strong>. Потрібно більше трафіку через різні канали, які автоматизувати.</p>
+        </div>
+      </div>
+      <p style="margin-top:14px">Це два різні сегменти. Зараз притягую саме <strong>неплатоспроможних</strong>. Тому потрібні <span class="gold">дві стратегії одночасно:</span></p>
+      <ul>
+        <li>витягнути клієнтку з кризи → закрити її розрив → зробити кейс;</li>
+        <li>заробити <strong>прямо зараз</strong> — у мене власний касовий розрив і ще не виплачений кредит за Ковчег.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>Дві головні задачі від зустрічі</h2>
+    <div class="card">
+      <div class="two">
+        <div>
+          <div class="tag">ГОРИЗОНТ: 2–3 РОКИ</div>
+          <div class="mini-h">Велика стратегія</div>
+          <p>Маркетинговий план із блоків. Один блок — <strong>дві AI-платформи</strong>:</p>
+          <ul>
+            <li>для клієнтів — супровід між сесіями;</li>
+            <li>для колег-коучів — спільний ресурс.</li>
+          </ul>
+          <p style="margin-top:10px"><span class="gold">Нечесна конкурентна перевага:</span> мій <strong>цифровий аватар</strong> — цифрова копія, яка дає клієнтам підтримку 24/7.</p>
+        </div>
+        <div>
+          <div class="tag">ГОРИЗОНТ: 3–4 ТИЖНІ</div>
+          <div class="mini-h">Гроші зараз</div>
+          <p>Відкрите питання — <strong>трафік:</strong> де його брати, як створювати й конвертувати в ліди та контракти.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>Що я вже зробила на AI-Ковчезі</h2>
+    <div class="card">
+      <p style="margin-bottom:16px">За 8 тижнів навчання зібрала живі продукти — лендинги, квіз і AI-асистентів.</p>
+
+      <div class="port">
+        <div class="pcard">
+          <div class="tag">КВІЗ · ЛІД-МАГНІТ</div>
+          <div class="mini-h">Діагностика мислення</div>
+          <p>Інтерактивний тест-діагностика мислення в моєму підході.</p>
+          <a href="https://quiz-unlocking.vercel.app" target="_blank" rel="noopener">quiz-unlocking.vercel.app →</a>
+        </div>
+        <div class="pcard">
+          <div class="tag">ЛЕНДИНГ</div>
+          <div class="mini-h">Версія 2.0</div>
+          <p>«Наскільки ви близькі до себе майбутнього?» — лендинг із вбудованим тестом і запрошенням на діагностику.</p>
+          <a href="https://landing-version2-ngbs.vercel.app" target="_blank" rel="noopener">landing-version2-ngbs.vercel.app →</a>
+        </div>
+        <div class="pcard">
+          <div class="tag">ЛЕНДИНГ · ОПЛАТА</div>
+          <div class="mini-h">Індивідуальна зустріч з коучем</div>
+          <p>Платна сесія 60 хв для підприємців і топ-менеджерів. Є блок оплати й бронювання.</p>
+          <a href="https://unlocking-session.vercel.app" target="_blank" rel="noopener">unlocking-session.vercel.app →</a>
+        </div>
+        <div class="pcard">
+          <div class="tag">ПІДСУМОК</div>
+          <div class="mini-h">AI-Ковчег · recap</div>
+          <p>Повний підсумок навчання й усіх продуктів за 8 тижнів.</p>
+          <a href="https://ai-kovcheg-recap.vercel.app" target="_blank" rel="noopener">ai-kovcheg-recap.vercel.app →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>Конкретні питання розібрати</h2>
+    <div class="card">
+      <ol>
+        <li><strong>Як сформувати трафік і якісних лідів прямо зараз?</strong> Знання є, грошей немає.</li>
+        <li><strong>Продуктова лінійка:</strong> на зараз і на перспективу.</li>
+        <li><strong>AI-напрямок.</strong> Бачу два кроки — <span class="gold">не розумію як покроково реалізовувати, які потрібні ресурси:</span>
+          <ul>
+            <li><strong>Цифровий аватар + SaaS</strong> для підтримки між сесіями своїх нинішніх клієнтів — як нечесна конкурентна перевага. Поки немає чіткої картинки, <strong>як саме це реалізувати</strong>.</li>
+            <li><strong>Середній за ціною AI-продукт</strong> — проміжний етап для тих, хто хоче отримувати допомогу від мене тут і зараз, але в обрізаному варіанті, поки гріється до персональної роботи. Поки вони не мої клієнти — я не знаю їхній контекст, тож вони отримують універсальні відповіді. <span class="gold">Коли заходять у роботу</span> — я підгружаю їхню цілісну ситуацію в систему, і вони отримують і мене one-to-one, і цифрового аватара 24/7, який уже відповідає з їхнім контекстом.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="foot">Іра Анк · коуч мислення · підготовлено до зустрічі з Владом Яско</div>
+
+</div>
+</body>
+</html>
